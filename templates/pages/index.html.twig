@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block title %}Administration des pages{% endblock %}
+{% block body %}
+{% set nav = 'page' %}
+{% include "partials/menu.html.twig" %}
+<h1>Pages</h1>
+<div class="cadre">
+    <div class="link2">
+        <a href="{{path('dashboard')}}"><button class="btn btn-primary">Retour au dashboard</button></a>
+        <a href="{{path('admin_add_page')}}"><button class="btn btn-success">Ajouter une page</button></a>
+        
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre en français</th>
+                <th>Titre en anglais</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for page in pages %}
+            <tr>
+                <td>{{page.titleFr}}</td>
+                <td>{{page.titleEn}}</td>
+                <td>
+                    <a href="{{path('admin_edit_page',{"id":page.id})}}" class="btn btn-warning"> Modifier la page</a>
+                    
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+    {% endblock %}

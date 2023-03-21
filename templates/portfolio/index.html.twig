@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block title %}Administration des projets{% endblock %}
+{% block body %}
+{% set nav = 'work' %}
+{% include "partials/menu.html.twig" %}
+<h1>Portfolio</h1>
+<div class="cadre">
+    <div class="link2">
+        <a href="{{path('dashboard')}}"><button class="btn btn-primary">Retour au dashboard</button></a>
+        <a href="{{path('admin_add_portfolio')}}"><button class="btn btn-success">Ajouter un projet</button></a>
+         <a href="{{path('admin_category')}}"><button class="btn btn-info">Menu catégorie</button></a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titre fr</th>
+                <th>Titre en</th>
+                <th>Texte en francais</th>
+                <th>Texte en anglais</th>
+                <th>Image à la une</th>
+                <th>Meta FR</th>
+                <th>Meta En</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+            <tr>
+                <td>{{project.id}}</td>
+                <td>{{project.titleFr}}</td>
+                <td>{{project.titleEn}}</td>
+                <td>{{project.descriptionFr}}</td>
+                <td>{{project.descriptionEn}}</td>
+                
+                <td><img src="/uploads/{{project.coverImage}}" class="starsimg"></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <a href="{{path('admin_edit_portfolio',{'id':project.id})}}" class="btn btn-warning"> Modifier le
+                        projet</a>
+                    <a href="{{path('admin_delete_portfolio', {'id':project.id})}}" class="btn btn-danger">
+                        Supprimer</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

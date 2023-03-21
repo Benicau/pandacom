@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+{% block title %}Modifier une page{% endblock %}
+{% block body %}
+{% set nav = 'team' %}
+{% include "partials/menu.html.twig" %}
+<h1>Edition de {{team.Name}} {{team.Firstname}}</i></h1>
+<div class="cadre form">
+    <div class="link2">
+        <a href="{{path('admin_team')}}"><button class="btn btn-success retour">Retour</button></a>
+    </div>
+    <div class="team">
+        {{form_start(myform)}}
+        {{form_widget(myform)}}
+        <button type="submit" class="btn btn-success">Enregistrer</button>
+        {{form_end(myform)}}
+    </div>
+ </div>
+    {% endblock %}

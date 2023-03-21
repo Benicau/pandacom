@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block title %}Administration de la team{% endblock %}
+{% block body %}
+{% set nav = 'team' %}
+{% include "partials/menu.html.twig" %}      
+        <h1>Equipe PandaCom</h1>
+        <div class="cadre">
+        <div class="link2">
+         <a href="{{path('dashboard')}}"><button class="btn btn-primary">Retour au dashboard</button></a>
+        <a href="{{path('admin_add_team')}}"><button class="btn btn-success">Ajouter un membre à la team</button></a>
+        </div>
+       
+        <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Rôles Fr</th>
+                        <th>Rôles En</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for member in team %}
+                        <tr>
+                            <td>{{member.name}}</td>
+                            <td>{{member.firstname}}</td>
+                            <td>{{member.RolesFr}}</td>
+                            <td>{{member.RolesEn}}</td>
+                            <td>
+                                <a href="{{path('admin_delete_team',{"id": member.id})}}" class="btn btn-danger"> Supprimer</a>
+                                 <a href="{{path('admin_edit_team',{'id':member.id})}}" class="btn btn-warning"> Modifier membre</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+   
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+{% block title %}Administration des balises{% endblock %}
+{% block body %}
+{% set nav = 'refer' %}
+{% include "partials/menu.html.twig" %}
+<h1>Gestion des balises</h1>
+<div class="cadre">
+    <div class="link2">
+        <a href="{{path('dashboard')}}"><button class="btn btn-primary">Retour au dashboard</button></a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titre Fr</th>
+                <th>Titre En</th>
+                <th>Description Fr</th>
+                <th>Description En</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for balise in balises %}
+            <tr>
+                <td>{{balise.id}}</td>
+                <td>{{balise.title}}</td>
+                <td>{{balise.titleEn}}</td>
+                <td>{{balise.Descriptionfr}}</td>
+                <td>{{balise.DescriptionEn}}</td>     
+                <td>
+                    <a href="{{path('admin_edit_meta',{"id":balise.id})}}" class="btn btn-warning">Modifier</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

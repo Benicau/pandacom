@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Modifier une page{% endblock %}
+{% block body %}
+{% set nav = 'page' %}
+{% include "partials/menu.html.twig" %}
+<h1>Edition de la page <i>{{page.titleFr}}</i></h1>
+        <div class="cadre form">
+         <div class="link2">
+        <a href="{{path('admin_pages')}}"><button class="btn btn-success retour">Retour</button></a>
+        </div>
+            {{form_start(myform)}}
+                {{form_widget(myform)}}
+                <button type="submit" class="btn btn-success">Enregistrer</button>
+            {{form_end(myform)}}
+        </div>
+{% endblock %}

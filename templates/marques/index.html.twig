@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block title %}Administration des marques{% endblock %}
+{% block body %}
+{% set nav = 'marque' %}
+{% include "partials/menu.html.twig" %}
+
+        <h1>Marques</h1>
+        <div class="cadre">
+        <div class="link2">
+        <a href="{{path('dashboard')}}"><button class="btn btn-primary">Retour au dashboard</button></a>
+        <a href="{{path('admin_add_marques')}}"><button class="btn btn-success">Ajouter une marque</button></a>  
+        </div>
+        <table class="table">
+                <thead>
+                    <tr>
+                        <th>Marque</th>
+                        <th>Logo</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for marque in marques %}
+                        <tr>
+                            <td>{{marque.name}}</td>
+                            <td><img src="/uploads/{{marque.Images}}" class="starsimg"></td>
+                            <td>      
+                                <a href="{{path('admin_delete_marques',{'id':marque.id})}}" class="btn btn-danger"> Supprimer<i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+{% endblock %}

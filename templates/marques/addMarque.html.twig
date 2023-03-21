@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+{% block title %}Ajouter une marque{% endblock %}
+{% block body %}
+{% set nav = 'marque' %}
+{% include "partials/menu.html.twig" %}
+<h1>Ajout d'une marque</h1>
+<div class="cadre form ">
+    <div class="link2">
+        <a href="{{path('admin_marques')}}"><button class="btn btn-success retour">Retour</button></a>
+    </div>
+    <div class="team">
+        {{form_start(myform)}}
+        {{form_widget(myform)}}
+        <button type="submit" class="btn btn-success">Enregistrer</button>
+        {{form_end(myform)}}
+    </div>
+</div>
+{% endblock %}

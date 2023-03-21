@@ -1,0 +1,64 @@
+{% extends "base.html.twig" %}
+{% block title %}Ajouter un projet{% endblock %}
+{% block body %}
+{% set nav = 'work' %}
+{% include "partials/menu.html.twig" %}
+ <h1>Ajout d'un projet</h1>
+
+    <div class="cadre form">
+    
+             <div class="link2">
+            <a href="{{path('admin_portfolio')}}"><button class="btn btn-success retour">Retour</button></a>
+                  </div>
+                <div>
+                {{form_start(myform)}}
+                    <div class="mb-3">
+                        {{ form_label(myform.titleFr)}}
+                        {{ form_widget(myform.titleFr)}}
+                        {{ form_errors(myform.titleFr)}}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_label(myform.titleEn)}}
+                        {{ form_widget(myform.titleEn)}}
+                        {{ form_errors(myform.titleEn)}}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_label(myform.descriptionFr)}}
+                        {{ form_widget(myform.descriptionFr)}}
+                        {{ form_errors(myform.descriptionFr)}}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_label(myform.descriptionEn)}}
+                        {{ form_widget(myform.descriptionEn)}}
+                        {{ form_errors(myform.descriptionEn)}}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_label(myform.link)}}
+                        {{ form_widget(myform.link)}}
+                        {{ form_errors(myform.link)}}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form_label(myform.slug)}}
+                        {{ form_widget(myform.slug)}}
+                        {{ form_errors(myform.slug)}}
+                    </div>
+                    <div class="fichier">
+                    <div class="mb-3">
+                        {{ form_label(myform.coverImage)}}
+                        {{ form_widget(myform.coverImage)}}
+                        {{ form_errors(myform.coverImage)}}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_label(myform.galeryImages)}}
+                        {{ form_widget(myform.galeryImages)}}
+                        {{ form_errors(myform.galeryImages)}}
+                    </div>
+                    </div>
+                    
+                </div>
+                <button class="btn btn-success" type="submit"> Enregistrer </button>
+            {{form_end(myform)}}      
+    </div>
+{% endblock %}
+

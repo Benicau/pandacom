@@ -1,0 +1,29 @@
+{% extends 'connect.html.twig' %}
+{% block title %}Connexion au site{% endblock %}
+{% block body %}
+<div class='connection'>
+ <img src="../images/logo.png" alt="logo panda com">
+            <div class="connectionBlock">
+                <h1>Connexion à l'administration</h1>            
+                {% if hasError %}
+                    <div class="alert">
+                        Une erreur est survenue, le nom d'utilisateur ou le mot de passe est invalide
+                    </div>
+                {% endif %}
+                <form action="{{ path('account_login')}}" method="POST">
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="text" name="_username" id="email" placeholder="Adresse email..." required value="{{ username }}">
+                    </div>
+                    <div>
+                        <label for="password">Mot de passe</label>
+                        <input type="password" name="_password" id="password" placeholder="Votre mot de passe" required>
+                    </div>
+                    <div class='link'>
+                        <button type="submit" class='connect' >Connexion</button>
+                         <a href="#"><button class="return">Retour au site</button></a>
+                    </div>
+                </form>
+            </div>
+</div>
+{% endblock %}

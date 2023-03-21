@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+{% block title %}Modifier catégorie{% endblock %}
+{% block body %}
+{% set nav = 'work' %}
+{% include "partials/menu.html.twig" %}
+<h1>Edition de la catégorie <i>{{category.nameFr}}</i></h1>
+<div class="cadre form ">
+    <div class="link2">
+         <a href="{{path('admin_category')}}"><button class="btn btn-success retour">Retour</button></a>
+    </div>
+    <div class="team">
+        {{form_start(myform)}}
+        {{form_widget(myform)}}
+        <button type="submit" class="btn btn-success">Enregistrer</button>
+        {{form_end(myform)}}
+    </div>
+</div>
+{% endblock %}

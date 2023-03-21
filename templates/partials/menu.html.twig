@@ -1,0 +1,11 @@
+<div class='menu'>
+
+                
+                     
+                
+        <a href="{{path('admin_pages')}}"{% if nav == 'page' %} class="menuSelect" {% endif %}><button>Pages</button></a>
+        <a href="{{path('admin_portfolio')}}"{% if nav == 'work' %} class="menuSelect" {% endif %}><button>Portfolio</button></a> 
+        <a href="{{path('admin_team')}}"{% if nav == 'team' %} class="menuSelect" {% endif %}><button>Team</button></a>
+        <a href="{{path('admin_services')}}"{% if nav == 'servi' %} class="menuSelect" {% endif %}><button>Services</button></a>
+        <a href="{{path('admin_marques')}}"{% if nav == 'marque' %} class="menuSelect" {% endif %}><button>Marques</button></a>
+    </div>

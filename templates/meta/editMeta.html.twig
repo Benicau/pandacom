@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+{% block title %}Administration des balises{% endblock %}
+{% block body %}
+{% set nav = 'refer' %}
+{% include "partials/menu.html.twig" %}
+ <h1>Edition de la balise <i>{{balise.title}}</i></h1>
+<div class="cadre form">
+<div class="link2">
+ <a href="{{path('admin_meta')}}"><button class="btn btn-success retour">Retour</button></a>
+</div>
+            {{form_start(myform)}}
+                {{form_widget(myform)}}
+                <button type="submit" class="btn btn-success">Enregistrer</button>
+            {{form_end(myform)}}
+</div>    
+    </div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title %}Administration des services{% endblock %}
+{% block body %}
+{% set nav = 'servi' %}
+{% include "partials/menu.html.twig" %}
+    <h1>Services</h1>
+    <div class="cadre">
+        <div class="link2">
+            <a href="{{path('dashboard')}}"><button class="btn btn-primary">Retour au dashboard</button></a>
+            <a href="{{path('admin_add_service')}}"><button class="btn btn-success">Ajouter un service</button></a>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titre Fr</th>
+                    <th>Titre En</th>
+                    <th>Description Fr</th>
+                    <th>Description En</th>  
+                    <th>Image</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for service in services %}
+                <tr>
+                    <td>{{service.id}}</td>
+                    <td>{{service.titleFr}}</td>
+                    <td>{{service.titleEn}}</td>
+                    <td>{{service.Description}}</td>
+                    <td>{{service.DescriptionEn}}</td>
+                    <td><img src="/uploads/{{service.Image}}" class="starsimg"></td>
+                    <td>
+                         <a href="{{path('admin_edit_service',{'id':service.id})}}" class="btn btn-warning"> Modifier</a>
+                        <a href="{{path('admin_delete_service',{'id':service.id})}}" class="btn btn-danger">
+                            Supprimer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

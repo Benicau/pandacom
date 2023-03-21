@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block title %}Administration des catégories{% endblock %}
+{% block body %}
+{% set nav = 'work' %}
+{% include "partials/menu.html.twig" %}
+        <h1>Gestion des catégories</h1>
+        <div class="cadre">
+        <div class="link2">
+         <a href="{{path('dashboard')}}"><button class="btn btn-primary">Retour au dashboard</button></a>
+        <a href="{{path('admin_add_category')}}"><button class="btn btn-success">Ajouter une catégorie</button></a>
+        <a href="{{path('admin_portfolio')}}"><button class="btn btn-info">Retour porfolio</button></a>
+        </div>
+       
+        <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Titre anglais</th>
+                        <th class="text-center">Titre français</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category in categories %}
+                        <tr>
+                            <td class="text-center">{{category.id}}</td>
+                            <td class="text-center">{{category.nameFr}}</td>
+                            <td class="text-center">{{category.nameEn}}</td>
+                            <td class="actions text-center">
+                                <a href="{{path('admin_edit_category',{"id":category.id})}}" class="btn btn-warning"> Modifier la catégorie</a>
+                                <a href="{{path('admin_delete_category',{'id':category.id})}}" class="btn btn-danger"> Supprimer<i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+   
+{% endblock %}
