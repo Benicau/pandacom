@@ -7,16 +7,17 @@ use App\Entity\CatPortfolio;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\CatPortfolioRepository;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CategoryController extends AbstractController
 {
     /** Show all category */
     #[Route('/category', name: 'admin_category')]
-    #[Security("is_granted('ROLE_ADMIN')")]
+    #[IsGranted("ROLE_ADMIN")]
     public function index(CatPortfolioRepository $repo): Response
     {
         $categories = $repo->findAll();
@@ -34,7 +35,7 @@ class CategoryController extends AbstractController
      * @return Response
      */
     #[Route('/category/add', name:'admin_add_category')]
-    #[Security("is_granted('ROLE_ADMIN')")]
+    #[IsGranted("ROLE_ADMIN")]
     public function addCategory(Request $request, EntityManagerInterface $manager):Response
     {
         $category = new CatPortfolio();
@@ -64,7 +65,7 @@ class CategoryController extends AbstractController
      * Editing a category
      */
     #[Route('/category/{id}/edit', name:"admin_edit_category")]
-    #[Security("is_granted('ROLE_ADMIN')")]
+    #[IsGranted("ROLE_ADMIN")]
     public function editCategory(CatPortfolio $category, Request $request, EntityManagerInterface $manager ):Response
     {
         $form = $this->createForm(CategoryType::class, $category);
@@ -93,7 +94,7 @@ class CategoryController extends AbstractController
      * Delete a category
      */
     #[Route('/category/{id}/delete', name:"admin_delete_category")]
-    #[Security("is_granted('ROLE_ADMIN')")]
+    #[IsGranted("ROLE_ADMIN")]
     public function categorydelete(CatPortfolio $category, EntityManagerInterface $manager):Response
     {
         $this->addFlash(

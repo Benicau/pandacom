@@ -9,7 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
@@ -17,7 +17,7 @@ class TeamController extends AbstractController
 {
     /** Show all pages */
     #[Route('/team', name: 'admin_team')]
-    #[Security("is_granted('ROLE_ADMIN')")]
+    #[IsGranted("ROLE_ADMIN")]
     public function index(TeamRepository $repo): Response
     {
         $team = $repo->findAll();
@@ -35,7 +35,7 @@ class TeamController extends AbstractController
      * @return Response
      */
     #[Route('/team/add', name:'admin_add_team')]
-    #[Security("is_granted('ROLE_ADMIN')")]
+    #[IsGranted("ROLE_ADMIN")]
     public function addMember(Request $request, EntityManagerInterface $manager):Response
     {
         $team = new Team();
@@ -84,7 +84,7 @@ class TeamController extends AbstractController
      * Delete a page
      */
     #[Route('/team/{id}/delete', name:"admin_delete_team")]
-    #[Security("is_granted('ROLE_ADMIN')")]
+    #[IsGranted("ROLE_ADMIN")]
     public function deleteMember(Team $team, EntityManagerInterface $manager):Response
     {
         $this->addFlash(
@@ -105,7 +105,7 @@ class TeamController extends AbstractController
 
 
     #[Route('/team/{id}/edit', name:"admin_edit_team")]
-    #[Security("is_granted('ROLE_ADMIN')")]
+    #[IsGranted("ROLE_ADMIN")]
     public function modifMember(Team $team, Request $request, EntityManagerInterface $manager):Response
     {
         $form=$this->createForm(TeamType::class, $team);

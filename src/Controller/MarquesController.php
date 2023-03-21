@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -17,7 +18,7 @@ class MarquesController extends AbstractController
 {
     /** Show all marques */
     #[Route('/dashboard/marques', name: 'admin_marques')]
-    #[Security("is_granted('ROLE_ADMIN')")]
+    #[IsGranted("ROLE_ADMIN")]
     public function index(MarquesRepository $repo): Response
     {
         $marques = $repo->findAll();
@@ -35,7 +36,7 @@ class MarquesController extends AbstractController
      * @return Response
      */
     #[Route('/dashboard/marques/add', name:'admin_add_marques')]
-    #[Security("is_granted('ROLE_ADMIN')")]
+    #[IsGranted("ROLE_ADMIN")]
     public function addPages(Request $request, EntityManagerInterface $manager):Response
     {
         $marques = new Marques();
@@ -83,7 +84,7 @@ class MarquesController extends AbstractController
      * Delete a marque
      */
     #[Route('/dashboard/marques/{id}/delete', name:"admin_delete_marques")]
-    #[Security("is_granted('ROLE_ADMIN')")]
+    #[IsGranted("ROLE_ADMIN")]
     public function pagedelete(Marques $marques, EntityManagerInterface $manager):Response
     {
         $this->addFlash(

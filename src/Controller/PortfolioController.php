@@ -9,17 +9,16 @@ use App\Repository\PortfolioRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class PortfolioController extends AbstractController
 {
     #[Route('/portfolio', name: 'admin_portfolio')]
-    #[Security("is_granted('ROLE_ADMIN')")]
+    #[IsGranted("ROLE_ADMIN")]
     public function index(PortfolioRepository $repo): Response
     {
         $projects= $repo->findAll();
@@ -38,7 +37,7 @@ class PortfolioController extends AbstractController
      * @return Response
      */
     #[Route('/portfolio/add', name:"admin_add_portfolio")]
-    #[Security("is_granted('ROLE_ADMIN')")]
+    #[IsGranted("ROLE_ADMIN")]
     public function addProject(Request $request, EntityManagerInterface $manager):Response
     {
         $projet = new Portfolio();
@@ -97,7 +96,7 @@ class PortfolioController extends AbstractController
     }
 
     #[Route('deleteImage/{id}', name: 'image_delete', methods: ['GET','POST'])]
-    #[Security("is_granted('ROLE_ADMIN')")]
+    #[IsGranted("ROLE_ADMIN")]
     public function ImageDelete(GaleryPortfolio $image, EntityManagerInterface $manager, Request $request){
 
         $this->addFlash('success', "L'image {$image->getId()} a bien été supprimée");
@@ -115,7 +114,7 @@ class PortfolioController extends AbstractController
     
 
     #[Route('portfolio/{id}/edit', name:"admin_edit_portfolio")]
-    #[Security("is_granted('ROLE_ADMIN')")]
+    #[IsGranted("ROLE_ADMIN")]
     public function editProject(Portfolio $project,Request $request, EntityManagerInterface $manager ):Response
     {
     
@@ -169,7 +168,7 @@ class PortfolioController extends AbstractController
     }
 
     #[Route("/portfolio/{id}/delete", name:"admin_delete_portfolio")]
-    #[Security("is_granted('ROLE_ADMIN')")]
+    #[IsGranted("ROLE_ADMIN")]
     public function delete(Portfolio $project, EntityManagerInterface $manager)
     {
         $this->addFlash('success', "Le projet {$project->getId()} a bien été supprimé");
