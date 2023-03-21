@@ -13,20 +13,11 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        admin: 
-            pattern: ^/pandastic
-            provider: app_user_provider
-            form_login: 
-                default_target_path: dashboard
-                login_path : account_login
-                check_path : account_login
-            logout: 
-                path: admin_account_logout
-                target: homepage
         main:
             lazy: true
             provider: app_user_provider
             form_login :
+                default_target_path: dashboard
                 login_path : account_login
                 check_path : account_login
             logout : 
