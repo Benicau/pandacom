@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 class PortfolioController extends AbstractController
 {
     #[Route('/portfolio', name: 'admin_portfolio')]
-    #[IsGranted("ROLE_ADMIN")]
+    
     public function index(PortfolioRepository $repo): Response
     {
         $projects= $repo->findAll();
@@ -37,7 +37,7 @@ class PortfolioController extends AbstractController
      * @return Response
      */
     #[Route('/portfolio/add', name:"admin_add_portfolio")]
-    #[IsGranted("ROLE_ADMIN")]
+    
     public function addProject(Request $request, EntityManagerInterface $manager):Response
     {
         $projet = new Portfolio();
@@ -96,7 +96,7 @@ class PortfolioController extends AbstractController
     }
 
     #[Route('deleteImage/{id}', name: 'image_delete', methods: ['GET','POST'])]
-    #[IsGranted("ROLE_ADMIN")]
+   
     public function ImageDelete(GaleryPortfolio $image, EntityManagerInterface $manager, Request $request){
 
         $this->addFlash('success', "L'image {$image->getId()} a bien été supprimée");
@@ -114,7 +114,7 @@ class PortfolioController extends AbstractController
     
 
     #[Route('portfolio/{id}/edit', name:"admin_edit_portfolio")]
-    #[IsGranted("ROLE_ADMIN")]
+    
     public function editProject(Portfolio $project,Request $request, EntityManagerInterface $manager ):Response
     {
     
@@ -168,7 +168,7 @@ class PortfolioController extends AbstractController
     }
 
     #[Route("/portfolio/{id}/delete", name:"admin_delete_portfolio")]
-    #[IsGranted("ROLE_ADMIN")]
+    
     public function delete(Portfolio $project, EntityManagerInterface $manager)
     {
         $this->addFlash('success', "Le projet {$project->getId()} a bien été supprimé");

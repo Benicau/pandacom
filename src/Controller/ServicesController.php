@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 class ServicesController extends AbstractController
 {
     #[Route('/services', name: 'admin_services')]
-    #[IsGranted("ROLE_ADMIN")]
+    
     public function index(ServicesRepository $repo): Response
     {
         $services = $repo->findAll();
@@ -28,7 +28,7 @@ class ServicesController extends AbstractController
     }
 
     #[Route('/services/add', name:"admin_add_service")]
-    #[IsGranted("ROLE_ADMIN")]
+    
     public function addService(EntityManagerInterface $manager, Request $request):Response
     {
         $service = new Services();
@@ -76,7 +76,7 @@ class ServicesController extends AbstractController
      * Delete a page
      */
     #[Route('sercices/{id}/delete', name:"admin_delete_service")]
-    #[IsGranted("ROLE_ADMIN")]
+   
     public function deleteService (Services $service, EntityManagerInterface $manager):Response
     {
         $this->addFlash(
@@ -95,7 +95,7 @@ class ServicesController extends AbstractController
     }
 
     #[Route('/services/{id}/edit', name:"admin_edit_service")]
-    #[IsGranted("ROLE_ADMIN")]
+    
     public function editService (Services $service, EntityManagerInterface $manager, Request $request):Response
     {
         $form=$this->createForm(ServiceType::class, $service);

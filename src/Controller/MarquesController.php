@@ -18,7 +18,7 @@ class MarquesController extends AbstractController
 {
     /** Show all marques */
     #[Route('/dashboard/marques', name: 'admin_marques')]
-    #[IsGranted("ROLE_ADMIN")]
+   
     public function index(MarquesRepository $repo): Response
     {
         $marques = $repo->findAll();
@@ -36,7 +36,7 @@ class MarquesController extends AbstractController
      * @return Response
      */
     #[Route('/dashboard/marques/add', name:'admin_add_marques')]
-    #[IsGranted("ROLE_ADMIN")]
+    
     public function addPages(Request $request, EntityManagerInterface $manager):Response
     {
         $marques = new Marques();
@@ -84,7 +84,7 @@ class MarquesController extends AbstractController
      * Delete a marque
      */
     #[Route('/dashboard/marques/{id}/delete', name:"admin_delete_marques")]
-    #[IsGranted("ROLE_ADMIN")]
+   
     public function pagedelete(Marques $marques, EntityManagerInterface $manager):Response
     {
         $this->addFlash(

@@ -17,7 +17,7 @@ class PagesController extends AbstractController
 {
     /** Show all pages */
     #[Route('/dashboard/pages', name: 'admin_pages')]
-    #[IsGranted("ROLE_ADMIN")]
+    
     public function index(PagesRepository $repo): Response
     {
         $pages = $repo->findAll();
@@ -35,7 +35,7 @@ class PagesController extends AbstractController
      * @return Response
      */
     #[Route('/dashboard/pages/add', name:'admin_add_page')]
-    #[IsGranted("ROLE_ADMIN")]
+    
     public function addPages(Request $request, EntityManagerInterface $manager):Response
     {
         $page = new Pages();
@@ -65,7 +65,7 @@ class PagesController extends AbstractController
      * Editing a page
      */
     #[Route('/pages/{id}/edit', name:"admin_edit_page")]
-    #[IsGranted("ROLE_ADMIN")]
+   
     public function editPage(Pages $page, Request $request, EntityManagerInterface $manager ):Response
     {
         $form = $this->createForm(PageType::class, $page);
@@ -94,7 +94,7 @@ class PagesController extends AbstractController
      * Delete a page
      */
     #[Route('pages/{id}/delete', name:"admin_delete_page")]
-    #[IsGranted("ROLE_ADMIN")]
+    
     public function pagedelete(Pages $page, EntityManagerInterface $manager):Response
     {
         $this->addFlash(
@@ -114,7 +114,7 @@ class PagesController extends AbstractController
      */
 
      #[Route('pages/{id}', name:"admin_delete_page")]
-     #[IsGranted("ROLE_ADMIN")]
+     
     public function show(Pages $pages): Response
     {
         return $this->json([

@@ -12,8 +12,7 @@ class DashboardController extends AbstractController
 {
     /** Connexion to the administration */
     #[Route('/dashboard', name: 'dashboard')]
-    #[IsGranted("ROLE_ADMIN")]
-
+    
     public function index(): Response
     {
         return $this->render('dashboard/index.html.twig', [

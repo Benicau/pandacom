@@ -17,7 +17,7 @@ class CategoryController extends AbstractController
 {
     /** Show all category */
     #[Route('/category', name: 'admin_category')]
-    #[IsGranted("ROLE_ADMIN")]
+    
     public function index(CatPortfolioRepository $repo): Response
     {
         $categories = $repo->findAll();
@@ -35,7 +35,7 @@ class CategoryController extends AbstractController
      * @return Response
      */
     #[Route('/category/add', name:'admin_add_category')]
-    #[IsGranted("ROLE_ADMIN")]
+    
     public function addCategory(Request $request, EntityManagerInterface $manager):Response
     {
         $category = new CatPortfolio();
@@ -65,7 +65,7 @@ class CategoryController extends AbstractController
      * Editing a category
      */
     #[Route('/category/{id}/edit', name:"admin_edit_category")]
-    #[IsGranted("ROLE_ADMIN")]
+   
     public function editCategory(CatPortfolio $category, Request $request, EntityManagerInterface $manager ):Response
     {
         $form = $this->createForm(CategoryType::class, $category);
@@ -94,7 +94,7 @@ class CategoryController extends AbstractController
      * Delete a category
      */
     #[Route('/category/{id}/delete', name:"admin_delete_category")]
-    #[IsGranted("ROLE_ADMIN")]
+    
     public function categorydelete(CatPortfolio $category, EntityManagerInterface $manager):Response
     {
         $this->addFlash(
